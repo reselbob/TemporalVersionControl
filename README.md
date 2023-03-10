@@ -13,4 +13,11 @@ The objective of the demonstration is a release version in which the behavior of
 
 Finally, another version will be release in which an additional activity named `doDishes()` is added to the workflow.
 
+# Running the demonstration code:
+
+1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).
+2. Execute `npm install` to install the dependencies.
+3. Execute `npm run start.watch` to start the Worker.
+4. In another terminal window execute, `sh ./run-workflow.sh` to run the Workflow using the Temporal.io Client.
+
 [MORE TO COME]

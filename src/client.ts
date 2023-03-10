@@ -14,11 +14,12 @@ async function run() {
         connection,
     });
 
+    const workflowId = 'workflow-' + nanoid();
     const handle = await client.start(simpleWorkflow, {
         taskQueue: 'morning-routine',
         // create a workflowId to make the workflow identifiable within the Temporal
         // server
-        workflowId: 'workflow-' + nanoid(),
+        workflowId: workflowId,
     });
     console.log(`Started workflow ${handle.workflowId}`);
 

@@ -17,9 +17,12 @@ const {wakeUp, takeShower, makeBreakfast, brushTeeth} = wf.proxyActivities<typeo
 
 const wakeUpTime = '7:30 AM';
 
-export async function simpleWorkflow(): Promise<void> {
-    await wakeUp(wakeUpTime);
-    await takeShower();
-    await makeBreakfast();
-    await brushTeeth();
+export async function simpleWorkflow(): Promise<string> {
+    const result = new Array<string>();
+    result.push(await wakeUp(wakeUpTime));
+    result.push(await takeShower());
+    result.push(await makeBreakfast());
+    result.push(await brushTeeth());
+
+    return result.join(" - ")
 }

@@ -18,24 +18,18 @@ const {wakeUp, takeShower, makeBreakfast, brushTeeth} = wf.proxyActivities<typeo
 
 const wakeUpTime = '7:30 AM';
 
-export async function simpleWorkflow(): Promise<string> {
-
-    const startTime = Date.now();
+export async function simpleWorkflow(): Promise<String> {
     const result = new Array<string>();
-
-    await wf.sleep(5000)
+    const startTime = new Date(Date.now()).toString();
     const wu = await wakeUp(wakeUpTime);
 
-    await wf.sleep(5000)
     const sh = await takeShower();
 
-    await wf.sleep(5000)
     const bk = await makeBreakfast();
 
-    await wf.sleep(5000)
     const bt = await brushTeeth();
 
-    const endTime= Date.now();
+    const endTime = new Date(Date.now()).toString();
 
     const person = {
         startTime,
@@ -46,5 +40,5 @@ export async function simpleWorkflow(): Promise<string> {
         endTime
     }
 
-    return JSON.stringify(person);
+    return JSON.stringify(person,null, 2);
 }

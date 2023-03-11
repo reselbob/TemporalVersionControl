@@ -18,7 +18,7 @@ const {wakeUp, takeShower, makeBreakfast, brushTeeth} = wf.proxyActivities<typeo
 
 const wakeUpTime = '7:30 AM';
 
-export async function simpleWorkflow(): Promise<String> {
+export async function simpleWorkflow(): Promise<void> {
     const result = new Array<string>();
     const startTime = new Date(Date.now()).toString();
     const wu = await wakeUp(wakeUpTime);
@@ -40,5 +40,5 @@ export async function simpleWorkflow(): Promise<String> {
         endTime
     }
 
-    return JSON.stringify(person,null, 2);
+    console.log(JSON.stringify(person,null, 2));
 }

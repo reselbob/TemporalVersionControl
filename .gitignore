@@ -1,6 +1,7 @@
 # Logs
 .idea
 lib/
+tests/
 
 logs
 *.log

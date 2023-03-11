@@ -15,7 +15,7 @@ async function run() {
     });
 
     const workflowId = 'workflow-' + nanoid();
-    console.log(`workflowId: ${workflowId}`);
+    //console.log(`workflowId: ${workflowId}`);
 
     const handle = await client.start(simpleWorkflow, {
         taskQueue: 'morning-routine',
@@ -24,7 +24,7 @@ async function run() {
     });
     console.log(`Started workflow ${handle.workflowId}`);
 
-    console.log(await handle.result());
+    //console.log(await handle.result());
 }
 
 run().catch((err) => {

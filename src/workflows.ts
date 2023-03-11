@@ -2,6 +2,7 @@ import * as wf from '@temporalio/workflow';
 // Only import the activity types
 import type * as activities from './activities';
 
+
 const maximumAttempts = 10; //The number of times to retry
 
 // Get the activities function in order to make them to the workflow.
@@ -18,11 +19,32 @@ const {wakeUp, takeShower, makeBreakfast, brushTeeth} = wf.proxyActivities<typeo
 const wakeUpTime = '7:30 AM';
 
 export async function simpleWorkflow(): Promise<string> {
-    const result = new Array<string>();
-    result.push(await wakeUp(wakeUpTime));
-    result.push(await takeShower());
-    result.push(await makeBreakfast());
-    result.push(await brushTeeth());
 
-    return result.join(" - ")
+    const startTime = Date.now();
+    const result = new Array<string>();
+
+    await wf.sleep(5000)
+    const wu = await wakeUp(wakeUpTime);
+
+    await wf.sleep(5000)
+    const sh = await takeShower();
+
+    await wf.sleep(5000)
+    const bk = await makeBreakfast();
+
+    await wf.sleep(5000)
+    const bt = await brushTeeth();
+
+    const endTime= Date.now();
+
+    const person = {
+        startTime,
+        wakeUp: wu,
+        takeShower: sh,
+        makeBreakfast: bk,
+        brushTeeth: bt,
+        endTime
+    }
+
+    return JSON.stringify(person);
 }

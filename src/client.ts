@@ -1,5 +1,5 @@
 import { Connection, WorkflowClient } from '@temporalio/client';
-import { simpleWorkflow } from './workflows';
+import { morningRoutineWorkflow } from './workflows';
 import { nanoid } from 'nanoid';;
 import path from "path";
 import fs from "fs";
@@ -20,9 +20,9 @@ async function run() {
 
     const wakeUpTime: string = getWakeupTime();
 
-    const handle = await client.start(simpleWorkflow, {
+    const handle = await client.start(morningRoutineWorkflow, {
         taskQueue: 'morning-routine',
-        cronSchedule: '* * * * *',
+        cronSchedule: '30 7 * * *',
         workflowId: workflowId,
         args: [wakeUpTime],
     });

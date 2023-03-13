@@ -2,7 +2,7 @@ import {ApplicationFailure} from "@temporalio/workflow";
 
 
 //  milliseconds * seconds * minutes * hours = .5 hours
-const PAUSE_LENGTH= 1000 * 60 * 60 * .5;
+const PAUSE_LENGTH= 2000;
 
 export async function wakeUp(customer: string, wakeUpTime: string): Promise<string> {
     const msg = `${customer} got up at ${wakeUpTime}.`;

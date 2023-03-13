@@ -19,7 +19,7 @@ async function run() {
 
     const handle = await client.start(morningRoutineWorkflow, {
         taskQueue: taskQueue,
-        cronSchedule: '30 7 * * *',
+        cronSchedule: '* * * * *',
         workflowId: workflowId,
         args: [customer, wakeUpTime],
     });

@@ -21,6 +21,8 @@ Finally, another version will be release in which an additional activity named `
 1. If the Temporal cluster is not running on the local machine, execute `sh ./setup-temporal-server.sh` to run the Temporal Server using Docker Compose.
 2. Execute `npm install` to install the dependencies.
 3. Execute `npm start` to start the Worker.
-4. In another terminal window execute, `npm run workflow-from-client` to run the Workflow using the Temporal.io Client.
+4. In another terminal window execute, `npm run workflow-from-client <CUSTOMER_NAME>` to run the Workflow using the Temporal.io Client.
 
-[MORE TO COME]
+**WHERE** `<CUSTOMER_NAME>` is an alphanumeric string that indicates the customer's name.
+
+

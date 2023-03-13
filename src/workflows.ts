@@ -18,19 +18,19 @@ const {wakeUp, takeShower, makeBreakfast, brushTeeth} = wf.proxyActivities<typeo
 
 //const wakeUpTime = '7:30 AM';
 
-export async function morningRoutineWorkflow(wakeUpTime: string): Promise<void> {
+export async function morningRoutineWorkflow(customer :string, wakeUpTime: string): Promise<void> {
     const startTime = new Date(Date.now()).toString();
-    const wu = await wakeUp(wakeUpTime);
+    const wu = await wakeUp(customer, wakeUpTime);
 
-    const sh = await takeShower();
+    const sh = await takeShower(customer);
 
-    const bk = await makeBreakfast();
+    const bk = await makeBreakfast(customer);
 
-    const bt = await brushTeeth();
+    const bt = await brushTeeth(customer);
 
     const endTime = new Date(Date.now()).toString();
 
-    const person = {
+    const status = {
         startTime,
         wakeUp: wu,
         takeShower: sh,
@@ -39,5 +39,5 @@ export async function morningRoutineWorkflow(wakeUpTime: string): Promise<void> 
         endTime
     }
 
-    console.log(JSON.stringify(person,null, 2));
+    console.log(JSON.stringify(status,null, 2));
 }

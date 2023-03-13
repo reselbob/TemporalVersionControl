@@ -1,13 +1,10 @@
 import { Connection, WorkflowClient } from '@temporalio/client';
 import { morningRoutineWorkflow } from './workflows';
 import { nanoid } from 'nanoid';;
-import path from "path";
-import fs from "fs";
-// dotenv looks for the existence of a .env file that has env var settings.
-// if no .env file exists, dotenv look for the environment variables in memory
-require('dotenv').config({ path: path.join(__dirname, '../', '.env') })
 
 async function run() {
+    const customer: string = process.argv.slice(2)[0] || "Anonymous";
+
     //Connect to localhost with default ConnectionOptions.
     const connection = await Connection.connect({});
 
@@ -15,15 +12,16 @@ async function run() {
         connection,
     });
 
-    const workflowId = 'workflow-' + nanoid();
+    const workflowId = customer + '-workflow-' + nanoid();
+    const taskQueue = customer + '-morning-routine'
 
     const wakeUpTime = "7:30 AM"
 
     const handle = await client.start(morningRoutineWorkflow, {
-        taskQueue: 'morning-routine',
+        taskQueue: taskQueue,
         cronSchedule: '30 7 * * *',
         workflowId: workflowId,
-        args: [wakeUpTime],
+        args: [customer, wakeUpTime],
     });
     console.log(`Started workflow ${handle.workflowId}`);
 

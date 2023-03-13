@@ -16,9 +16,8 @@ async function run() {
     });
 
     const workflowId = 'workflow-' + nanoid();
-    //console.log(`workflowId: ${workflowId}`);
 
-    const wakeUpTime: string = getWakeupTime();
+    const wakeUpTime = "7:30 AM"
 
     const handle = await client.start(morningRoutineWorkflow, {
         taskQueue: 'morning-routine',
@@ -28,15 +27,6 @@ async function run() {
     });
     console.log(`Started workflow ${handle.workflowId}`);
 
-    //console.log(await handle.result());
-}
-
-function getWakeupTime(): string{
-    const dataFileSpec = path.join(__dirname, '../data', 'data.json')
-    const data = fs.readFileSync(dataFileSpec,
-        {encoding:'utf8', flag:'r'});
-    const json = JSON.parse(data);
-    return json.wakeupTime;
 }
 
 run().catch((err) => {
